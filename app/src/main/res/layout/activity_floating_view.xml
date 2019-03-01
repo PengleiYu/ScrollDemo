@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.scrolldemo.FloatingContainer
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:id="@+id/container_floatingView"
+        android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:text="Hello world"
+                    android:gravity="center"
+                    android:background="@android:color/holo_blue_dark"
+                    android:layout_height="10000dp"/>
+        </FrameLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <ImageView
+            android:id="@+id/img_floatingView"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/holo_orange_dark"
+            android:src="@drawable/ic_launcher_foreground"
+            android:layout_height="wrap_content"/>
+</com.example.scrolldemo.FloatingContainer>

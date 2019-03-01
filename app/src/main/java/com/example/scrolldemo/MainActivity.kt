@@ -8,7 +8,10 @@ import com.example.scrolldemo.customer.CustomerScrollerActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private val map = mapOf("自定义滚动" to CustomerScrollerActivity::class.java)
+    private val map = mapOf(
+        "自定义滚动" to CustomerScrollerActivity::class.java
+        , "浮动View" to FloatViewActivity::class.java
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

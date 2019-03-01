@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".customer.CustomerScrollerActivity"/>
+        <activity android:name=".FloatViewActivity"/>
     </application>
 
 </manifest>

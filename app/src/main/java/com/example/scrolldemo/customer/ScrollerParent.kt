@@ -10,10 +10,8 @@ import android.widget.FrameLayout
 /**
  * @author penglei on 2019/3/1
  */
-class ScrollerParent : FrameLayout, NestedScrollingParent2, NestedScrollingChild2 {
-    companion object {
-        private val TAG = ScrollerParent::class.java.simpleName
-    }
+open class ScrollerParent : FrameLayout, NestedScrollingParent2, NestedScrollingChild2 {
+    private val tag = this.javaClass.simpleName
 
     private val parentHelper = NestedScrollingParentHelper(this)
     private val childHelper = NestedScrollingChildHelper(this)
@@ -96,7 +94,7 @@ class ScrollerParent : FrameLayout, NestedScrollingParent2, NestedScrollingChild
      */
     override fun onNestedPreFling(target: View, velocityX: Float, velocityY: Float): Boolean {
         // 允许滑行
-        return true
+        return false
     }
 
     override fun onNestedFling(target: View, velocityX: Float, velocityY: Float, consumed: Boolean): Boolean {
@@ -230,7 +228,7 @@ class ScrollerParent : FrameLayout, NestedScrollingParent2, NestedScrollingChild
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    private fun log(msg: String) {
-        Log.d(">>> $TAG", msg)
+    protected fun log(msg: String) {
+        Log.d(">>> $tag", msg)
     }
 }
