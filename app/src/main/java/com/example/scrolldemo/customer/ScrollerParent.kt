@@ -1,11 +1,10 @@
-package com.example.scrolldemo
+package com.example.scrolldemo.customer
 
 import android.content.Context
 import android.support.v4.view.*
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.FrameLayout
 
 /**
