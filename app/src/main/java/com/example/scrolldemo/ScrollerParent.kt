@@ -6,118 +6,18 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 
 /**
  * @author penglei on 2019/3/1
  */
-class ScrollerParent : ViewGroup, NestedScrollingParent2, NestedScrollingChild2 {
+class ScrollerParent : FrameLayout, NestedScrollingParent2, NestedScrollingChild2 {
     companion object {
         private val TAG = ScrollerParent::class.java.simpleName
     }
 
     private val parentHelper = NestedScrollingParentHelper(this)
     private val childHelper = NestedScrollingChildHelper(this)
-
-    // ========================Child========================
-
-    /**
-     * 是否有可滚动的父View
-     */
-    override fun hasNestedScrollingParent(type: Int): Boolean {
-        return childHelper.hasNestedScrollingParent(type)
-    }
-
-    override fun hasNestedScrollingParent(): Boolean {
-        return childHelper.hasNestedScrollingParent()
-    }
-
-    /**
-     * 设置是否可滚动
-     */
-    override fun setNestedScrollingEnabled(enabled: Boolean) {
-        childHelper.isNestedScrollingEnabled = enabled
-    }
-
-    /**
-     * 是否可滚动
-     */
-    override fun isNestedScrollingEnabled(): Boolean {
-        return childHelper.isNestedScrollingEnabled
-    }
-
-    /**
-     * 本View分发预滚动
-     */
-    override fun dispatchNestedPreScroll(
-        dx: Int,
-        dy: Int,
-        consumed: IntArray?,
-        offsetInWindow: IntArray?,
-        type: Int
-    ): Boolean {
-        return childHelper.dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow, type)
-    }
-
-    override fun dispatchNestedPreScroll(dx: Int, dy: Int, consumed: IntArray?, offsetInWindow: IntArray?): Boolean {
-        return childHelper.dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow)
-    }
-
-    /**
-     * 本View开始滚动
-     */
-    override fun startNestedScroll(axes: Int, type: Int): Boolean {
-        return childHelper.startNestedScroll(axes, type)
-    }
-
-    override fun startNestedScroll(axes: Int): Boolean {
-        return childHelper.startNestedScroll(axes)
-    }
-
-    /**
-     * 本View分发已滚动
-     */
-    override fun dispatchNestedScroll(
-        dxConsumed: Int,
-        dyConsumed: Int,
-        dxUnconsumed: Int,
-        dyUnconsumed: Int,
-        offsetInWindow: IntArray?,
-        type: Int
-    ): Boolean {
-        return childHelper.dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, offsetInWindow, type)
-    }
-
-    override fun dispatchNestedScroll(
-        dxConsumed: Int,
-        dyConsumed: Int,
-        dxUnconsumed: Int,
-        dyUnconsumed: Int,
-        offsetInWindow: IntArray?
-    ): Boolean {
-        return childHelper.dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, offsetInWindow)
-    }
-
-    /**
-     * 本View停止滚动
-     */
-    override fun stopNestedScroll(type: Int) {
-        return childHelper.stopNestedScroll(type)
-    }
-
-    override fun stopNestedScroll() {
-        return childHelper.stopNestedScroll()
-    }
-
-    /**
-     * 滑行相关
-     */
-    override fun dispatchNestedPreFling(velocityX: Float, velocityY: Float): Boolean {
-        return childHelper.dispatchNestedPreFling(velocityX, velocityY)
-    }
-
-    override fun dispatchNestedFling(velocityX: Float, velocityY: Float, consumed: Boolean): Boolean {
-        return childHelper.dispatchNestedFling(velocityX, velocityY, consumed)
-    }
 
     // ==============================Parent==============================
 
@@ -204,12 +104,128 @@ class ScrollerParent : ViewGroup, NestedScrollingParent2, NestedScrollingChild2 
         // 不拦截滑动
         return false
     }
+
+    // ========================Child========================
+
+    /**
+     * 是否有可滚动的父View
+     */
+    override fun hasNestedScrollingParent(type: Int): Boolean {
+        return childHelper.hasNestedScrollingParent(type)
+    }
+
+    override fun hasNestedScrollingParent(): Boolean {
+        return childHelper.hasNestedScrollingParent()
+    }
+
+    /**
+     * 设置是否可滚动
+     */
+    override fun setNestedScrollingEnabled(enabled: Boolean) {
+        childHelper.isNestedScrollingEnabled = enabled
+    }
+
+    /**
+     * 是否可滚动
+     */
+    override fun isNestedScrollingEnabled(): Boolean {
+        return childHelper.isNestedScrollingEnabled
+    }
+
+    /**
+     * 本View分发预滚动
+     */
+    override fun dispatchNestedPreScroll(
+        dx: Int,
+        dy: Int,
+        consumed: IntArray?,
+        offsetInWindow: IntArray?,
+        type: Int
+    ): Boolean {
+        return childHelper.dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow, type)
+    }
+
+    override fun dispatchNestedPreScroll(dx: Int, dy: Int, consumed: IntArray?, offsetInWindow: IntArray?): Boolean {
+        return childHelper.dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow)
+    }
+
+    /**
+     * 本View开始滚动
+     */
+    override fun startNestedScroll(axes: Int, type: Int): Boolean {
+        return childHelper.startNestedScroll(axes, type)
+    }
+
+    override fun startNestedScroll(axes: Int): Boolean {
+        return childHelper.startNestedScroll(axes)
+    }
+
+    /**
+     * 本View分发已滚动
+     */
+    override fun dispatchNestedScroll(
+        dxConsumed: Int,
+        dyConsumed: Int,
+        dxUnconsumed: Int,
+        dyUnconsumed: Int,
+        offsetInWindow: IntArray?,
+        type: Int
+    ): Boolean {
+        return childHelper.dispatchNestedScroll(
+            dxConsumed,
+            dyConsumed,
+            dxUnconsumed,
+            dyUnconsumed,
+            offsetInWindow,
+            type
+        )
+    }
+
+    override fun dispatchNestedScroll(
+        dxConsumed: Int,
+        dyConsumed: Int,
+        dxUnconsumed: Int,
+        dyUnconsumed: Int,
+        offsetInWindow: IntArray?
+    ): Boolean {
+        return childHelper.dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, offsetInWindow)
+    }
+
+    /**
+     * 本View停止滚动
+     */
+    override fun stopNestedScroll(type: Int) {
+        return childHelper.stopNestedScroll(type)
+    }
+
+    override fun stopNestedScroll() {
+        return childHelper.stopNestedScroll()
+    }
+
+    /**
+     * 滑行相关
+     */
+    override fun dispatchNestedPreFling(velocityX: Float, velocityY: Float): Boolean {
+        return childHelper.dispatchNestedPreFling(velocityX, velocityY)
+    }
+
+    override fun dispatchNestedFling(velocityX: Float, velocityY: Float, consumed: Boolean): Boolean {
+        return childHelper.dispatchNestedFling(velocityX, velocityY, consumed)
+    }
     // ============================
 
-    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        if (!changed && childCount == 0) return
-        getChildAt(0).layout(l, t, r, b)
-    }
+//    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+//        measuredWidth
+//    }
+//
+//    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
+//        if (childCount == 0) return
+//        getChildAt(0).let {
+//            it.layout(l, t, r, t + it.measuredHeight)
+//            log("it height= ${it.measuredHeight}")
+//        }
+//    }
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
