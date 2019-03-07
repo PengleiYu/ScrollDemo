@@ -22,6 +22,7 @@ open class ScrollerParent : FrameLayout, NestedScrollingParent2, NestedScrolling
      * @return true表示允许子View嵌套滚动
      */
     override fun onStartNestedScroll(child: View, target: View, axes: Int, type: Int): Boolean {
+        log("onStartNestedScroll")
         // 允许滑动
         return true
     }
@@ -35,6 +36,7 @@ open class ScrollerParent : FrameLayout, NestedScrollingParent2, NestedScrolling
      * [onStartNestedScroll]返回true，后调用
      */
     override fun onNestedScrollAccepted(child: View, target: View, axes: Int, type: Int) {
+        log("onNestedScrollAccepted")
         return parentHelper.onNestedScrollAccepted(child, target, axes, type)
     }
 
@@ -54,6 +56,7 @@ open class ScrollerParent : FrameLayout, NestedScrollingParent2, NestedScrolling
      */
     override fun onNestedPreScroll(target: View, dx: Int, dy: Int, consumed: IntArray?, type: Int) {
         // 不进行预消耗
+        log("onNestedPreScroll")
     }
 
     override fun onNestedPreScroll(target: View, dx: Int, dy: Int, consumed: IntArray) {
@@ -72,6 +75,7 @@ open class ScrollerParent : FrameLayout, NestedScrollingParent2, NestedScrolling
         type: Int
     ) {
         // do nothing
+        log("onNestedScroll")
     }
 
     override fun onNestedScroll(target: View, dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int) {
@@ -83,6 +87,7 @@ open class ScrollerParent : FrameLayout, NestedScrollingParent2, NestedScrolling
      */
     override fun onStopNestedScroll(target: View, type: Int) {
         parentHelper.onStopNestedScroll(target, type)
+        log("onStopNestedScroll")
     }
 
     override fun onStopNestedScroll(target: View) {
@@ -94,11 +99,13 @@ open class ScrollerParent : FrameLayout, NestedScrollingParent2, NestedScrolling
      */
     override fun onNestedPreFling(target: View, velocityX: Float, velocityY: Float): Boolean {
         // 允许滑行
+        log("onNestedPreFling")
         return false
     }
 
     override fun onNestedFling(target: View, velocityX: Float, velocityY: Float, consumed: Boolean): Boolean {
         // 不拦截滑动
+        log("onNestedFling")
         return false
     }
 
